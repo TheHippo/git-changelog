@@ -8,7 +8,8 @@ if test -d ".git"; then
 	# yes we are in a git repository
 
 	# clear old changelog
-	echo "# Changelog" > Changelog
+	echo "Changelog" > Changelog
+	echo "=========" >> Changelog
 	echo "" >> Changelog
 	
 	#find first commit
@@ -22,7 +23,8 @@ if test -d ".git"; then
 	for i in "${TAGS[@]}"; do
 		# for each commit
 		echo "" >> Changelog
-		echo "## $i" >> Changelog
+		echo "$i" >> Changelog
+		echo "--------" >> Changelog
 		echo "" >> Changelog
 		git log $LAST...$i --pretty=format:' - %h %s (%an <%ae>)' --reverse | grep -v 'Merge branch' >> Changelog
 		LAST=$i
